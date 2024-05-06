@@ -16,6 +16,7 @@ from flask_login import(
 import sqlalchemy as sa
 from app.models import User
 from urllib.parse import urlsplit
+from datetime import datetime, timezone
 
 @app.route('/')
 @app.route('/index')
@@ -84,3 +85,9 @@ def user(username):
         {'author': user, 'body': 'Test post #2'}
     ]
     return render_template('user.html', title='Profile', user=user, posts=posts)
+
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.now(timezone.utc)
+        db.session.commit()
