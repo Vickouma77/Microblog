@@ -56,24 +56,26 @@ class User(UserMixin, db.Model):
     
     # adding and removing followers
     def follow(self, user):
-        if not self._is_following(user):
-            self.following.add(user)
+            if not self.is_following(user):
+                self.following.add(user)
+
     def unfollow(self, user):
-        if self.is_following(user):
-            self.following.remove(user)
+            if self.is_following(user):
+                self.following.remove(user)
+
     def is_following(self, user):
-        query = self.following.select().where(User.id == user.id)
-        return db.session.scalar(query) is not None
+            query = self.following.select().where(User.id == user.id)
+            return db.session.scalar(query) is not None
 
     def followers_count(self):
-        query = sa.select(sa.func.count()).select_from(
-            self.followers.select().subquery())
-        return db.session.scalar(query)
+            query = sa.select(sa.func.count()).select_from(
+                self.followers.select().subquery())
+            return db.session.scalar(query)
 
     def following_count(self):
-        query = sa.select(sa.func.count()).select_from(
-            self.following.select().subquery())
-        return db.session.scalar(query)
+            query = sa.select(sa.func.count()).select_from(
+                self.following.select().subquery())
+            return db.session.scalar(query)
     
     # following post query
     def following_posts(self):
