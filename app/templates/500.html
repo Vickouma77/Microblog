@@ -1,7 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>An unexpected error has occurred</h1>
-    <p>The administrator has been notified. Sorry for the inconvenience!</p>
-    <p><a href="{{ url_for('index') }}">Back</a></p>
+    <section class="py-3 py-md-5 min-vh-100 d-flex justify-content-center align-items-center">
+        <div class="container">
+        <div class="row">
+            <div class="col-12">
+            <div class="text-center">
+                <h2 class="d-flex justify-content-center align-items-center gap-2 mb-4">
+                <span class="display-1 fw-bold">5</span>
+                <span class="display-1 fw-bold">0</span>
+                <span class="display-1 fw-bold bsb-flip-h">0</span>
+                </h2>
+                <h1 class="h2 mb-2">An unexpected error has occurred</h1>
+                <p class="mb-5">The administrator has been notified. Sorry for the inconvenience!</p>
+                <a class="btn bsb-btn-5xl btn-primary rounded-pill px-5 fs-6 m-0" href="{{ url_for('index') }}" role="button">Back</a>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
 {% endblock %}
