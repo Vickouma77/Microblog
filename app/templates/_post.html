@@ -6,7 +6,7 @@
             </a>
         </td>
         <td>
-            <a href="{{ url_for('user', username=post.author.username) }}">
+            <a href="{{ url_for('user', username=post.author.username) }}" class="p-1 m-1 bg-primary text-white text-decoration-none rounded-4">
                 {{ post.author.username }}
             </a>
             said {{ moment(post.timestamp).fromNow() }}:
